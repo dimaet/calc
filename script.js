@@ -74,23 +74,41 @@ function validateInput(input) {
     }
 }
 
-// Функция для загрузки значений из localStorage
-function loadValues() {
-    const inputFields = document.querySelectorAll('.input-field');
 
-    inputFields.forEach(field => {
-        const savedValue = localStorage.getItem(field.id);
-        if (savedValue) {
-            field.value = savedValue; // Устанавливаем сохраненное значение в поле
+function initializeInputFields() {
+    const storage = {
+        get: key => localStorage.getItem(key),
+        set: (key, value) => localStorage.setItem(key, value),
+        remove: key => localStorage.removeItem(key),
+        clear: () => localStorage.clear(),
+        loadValues: fields => {
+            fields.forEach(field => {
+                const savedValue = storage.get(field.id);
+                if (savedValue) field.value = savedValue;
+            });
+        },
+        resetValues: fields => {
+            fields.forEach(field => {
+                field.value = '';
+                storage.remove(field.id);
+            });
+        }
+    };
+
+    const inputFields = document.querySelectorAll('.input-field');
+    const resetBtn = document.getElementById('resetBtn');
+    storage.loadValues(inputFields);
+
+    // Обработчик ввода для сохранения значений
+    document.addEventListener('input', (event) => {
+        const field = event.target.closest('.input-field');
+        if (field) {
+            validateInput(field);
+            storage.set(field.id, field.value);
         }
     });
+    
+    resetBtn.addEventListener('click', () => storage.resetValues(inputFields));
 }
 
-// Функция для сохранения значений в localStorage
-function saveValues() {
-    const inputFields = document.querySelectorAll('.input-field');
-
-    inputFields.forEach(field => {
-        localStorage.setItem(field.id, field.value); // Сохраняем значение поля в localStorage
-    });
-}
+window.addEventListener('DOMContentLoaded', initializeInputFields);

@@ -134,3 +134,9 @@ h1 {
     text-align: center;
     min-width: 200px;
 }
+
+.wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
