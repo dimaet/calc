@@ -16,7 +16,8 @@ body {
 .container {
     display: flex;
     align-items: flex-start;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 30px;
     min-width:620px;
 }
