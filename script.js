@@ -43,37 +43,35 @@ document.getElementById('calculateBtn').addEventListener('click', function() {
     }
 });
 
-
-function validateInput(input) {
-    const alertBox = document.getElementById('alert');
-    const inputFields = document.querySelectorAll('.input-field');
+function checkButtonState() {
+    const inputFields = Array.from(document.querySelectorAll('.input-field'));
     const calculateBtn = document.getElementById('calculateBtn');
     
-    // Проверка, является ли значение пустым или нечисловым
-    if (input.value.trim() === '') {
-        input.classList.remove('error'); // Убираем класс ошибки, если поле пустое
-        alertBox.style.display = 'none';
-    } else if (isNaN(input.value)) {
-        input.classList.add('error');
-        alertBox.style.display = 'block';
-    } else {
-        input.classList.remove('error');
-        alertBox.style.display = 'none';
-    }
-    
-    // Проверка состояния всех полей ввода
-    const allValid = Array.from(inputFields).every(field => field.value.trim() !== '' && !isNaN(field.value));
-    const allFieldsFilled = inputFields.length === 4 && allValid;
+    const allFieldsFilled = inputFields.length === 4 && inputFields.every(field => {
+        const value = field.value.trim();
+        return value !== '' && !isNaN(Number(value)); // Проверка на число
+    });
 
-    if (allFieldsFilled) {
-        calculateBtn.classList.remove('disabled');
-        calculateBtn.disabled = false; 
-    } else {
-        calculateBtn.classList.add('disabled');
-        calculateBtn.disabled = true;
-    }
+    calculateBtn.classList.toggle('disabled', !allFieldsFilled);
+    calculateBtn.disabled = !allFieldsFilled; 
 }
 
+// Функция валидации ввода
+function validateInput(input) {
+    const alertBox = document.getElementById('alert');
+    const value = input.value.trim();
+
+    if (value === '') {
+        input.classList.remove('error');
+        alertBox.style.display = 'none';
+    } else {
+        const isValid = !isNaN(value);
+        input.classList.toggle('error', !isValid);
+        alertBox.style.display = isValid ? 'none' : 'block';
+    }
+
+    checkButtonState();
+}
 
 function initializeInputFields() {
     const storage = {
@@ -112,3 +110,14 @@ function initializeInputFields() {
 }
 
 window.addEventListener('DOMContentLoaded', initializeInputFields);
+
+document.addEventListener('DOMContentLoaded', () => {
+    const inputFields = document.querySelectorAll('.input-field');
+    inputFields.forEach(field => {
+        const savedValue = localStorage.getItem(field.id);
+        if (savedValue) {
+            field.value = savedValue;
+        }
+        validateInput(field);
+    });
+});
