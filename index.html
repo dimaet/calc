@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Калькулятор</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h1>Введите все значения</h1>
+
+            <div class="input-group">
+                <label for="ei">ei</label>
+                <input type="text" id="ei" class="input-field" placeholder="Введите ei" oninput="validateInput(this)">
+            </div>
+            
+            <div class="input-group">
+                <label for="es">es</label>
+                <input type="text" id="es" class="input-field" placeholder="Введите es" oninput="validateInput(this)">
+            </div>
+            
+            <div class="input-group">
+                <label for="x">¬x</label>
+                <input type="text" id="x" class="input-field" placeholder="Введите ¬x" oninput="validateInput(this)">
+            </div>
+            
+            <div class="input-group">
+                <label for="sigma">σ</label>
+                <input type="text" id="sigma" class="input-field" placeholder="Введите σ" oninput="validateInput(this)">
+            </div>
+
+            <div id="alert" style="color: black; font-size: 10.9px; margin: 5px; display: none;">Пожалуйста, вводите только числовые значения!</div>
+
+            <button id="calculateBtn" class="btn disabled" disabled>Вычислить</button>
+        </div>
+
+        
+        <div class="graph-container">
+            <h1>График</h1>
+            <div class="graphic-placeholder">
+                
+                <div class="graphic">
+                    <svg width="400" height="200" xmlns="http://www.w3.org/2000/svg">
+            
+                        <rect width="400" height="200" fill="#f9f9f9" />
+                        <line x1="0" y1="100" x2="400" y2="100" stroke="#ccc" stroke-width="1" />
+                        <line x1="200" y1="0" x2="200" y2="200" stroke="#ccc" stroke-width="1" />
+                        <path d="M 0 100 
+                                 C 50 50, 150 50, 200 100 
+                                 C 250 150, 350 150, 400 100" 
+                              stroke="#6C63FF" 
+                              fill="none" 
+                              stroke-width="2" />
+                        <text x="210" y="110" font-size="12" fill="#666">0</text>
+                        <text x="390" y="110" font-size="12" fill="#666">x</text>
+                        <text x="210" y="15" font-size="12" fill="#666">y</text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="graph-container result">
+        <h1>Результаты</h1>
+        <div class="result">
+            <div class="result-box" id="result1">Годные</div>
+            <div class="result-box" id="result2">Брак неиспр.</div>
+            <div class="result-box" id="result3">Брак испр.</div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

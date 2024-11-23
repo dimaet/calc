@@ -1,0 +1,135 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 30px;
+    min-width:620px;
+}
+
+.form-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+
+.graph-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 150px;
+}
+
+.graph-container.result {
+    margin-top: 30px;
+    gap: 0px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 18px;
+    color: #333;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #555;
+}
+
+.input-field {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+.input-field:focus {
+    outline: none;
+    border-color: #6C63FF;
+    transition: border-color 0.3s ease;
+}
+
+.input-field.error {
+    border-color: red; 
+    transition: border-color 0.3s ease; 
+}
+
+.btn {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    background-color: #6C63FF;
+    color: white;
+    border: none;
+    font-size: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #5a54e6;
+}
+
+.btn.disabled {
+    background-color: gray;
+    cursor: not-allowed; 
+    opacity: 0.6; 
+    pointer-events: none; 
+}
+
+.graphic-placeholder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #48474f;
+    border-radius: 15px;
+    padding: 10px;
+    text-align: center;
+    color: #6C63FF;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.result {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.result-box {
+    background-color: #ebe8ff;
+    color: #333;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 14px;
+    text-align: center;
+    min-width: 200px;
+}
