@@ -73,3 +73,24 @@ function validateInput(input) {
         calculateBtn.disabled = true;
     }
 }
+
+// Функция для загрузки значений из localStorage
+function loadValues() {
+    const inputFields = document.querySelectorAll('.input-field');
+
+    inputFields.forEach(field => {
+        const savedValue = localStorage.getItem(field.id);
+        if (savedValue) {
+            field.value = savedValue; // Устанавливаем сохраненное значение в поле
+        }
+    });
+}
+
+// Функция для сохранения значений в localStorage
+function saveValues() {
+    const inputFields = document.querySelectorAll('.input-field');
+
+    inputFields.forEach(field => {
+        localStorage.setItem(field.id, field.value); // Сохраняем значение поля в localStorage
+    });
+}
