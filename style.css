@@ -108,6 +108,7 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
+    border: 1px solid #48474f;
     border-radius: 15px;
     padding: 10px;
     text-align: center;
@@ -133,6 +134,9 @@ h1 {
     text-align: center;
     min-width: 200px;
 }
-#gaussianCanvas {
-    border-radius: 15px;
+
+.wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
